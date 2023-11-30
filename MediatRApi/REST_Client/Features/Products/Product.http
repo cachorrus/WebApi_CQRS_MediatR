@@ -1,0 +1,22 @@
+@MediatRApi_HostAddress = http://localhost:5000/api
+
+#name GetProducts
+GET {{MediatRApi_HostAddress}}/products/
+Accept: application/json
+
+###
+
+#name GetProductsById
+GET {{MediatRApi_HostAddress}}/products/1
+Accept: application/json
+
+###
+
+#name CreateProduct
+POST {{MediatRApi_HostAddress}}/products/
+Content-Type: application/json
+
+{
+  "description": "Product 04",
+  "price": 500.50
+}
