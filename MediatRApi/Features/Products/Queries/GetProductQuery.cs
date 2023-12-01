@@ -1,4 +1,6 @@
 using MediatR;
+using MediatRApi.Domain;
+using MediatRApi.Exceptions;
 using MediatRApi.Infrastructure.Persistence;
 
 namespace MediatRApi.Features.Products.Queries;
@@ -21,9 +23,9 @@ public class GetProductQueryHandler : IRequestHandler<GetProductQuery, GetProduc
     {
         var product = await _context.Products.FindAsync(request.ProductId);
 
-        if(product == null)
+        if (product is null)
         {
-            throw new Exception("Product not found");
+            throw new NotFoundException(nameof(Product), request.ProductId);
         }
 
         return new GetProductQueryResponse
