@@ -2,13 +2,14 @@ using AutoMapper;
 using MediatR;
 using MediatRApi.Domain;
 using MediatRApi.Exceptions;
+using MediatRApi.Helpers;
 using MediatRApi.Infrastructure.Persistence;
 
 namespace MediatRApi.Features.Products.Queries;
 
 public class GetProductQuery: IRequest<GetProductQueryResponse>
 {
-    public int ProductId { get; set; }
+    public string ProductId { get; set; } = default!;
 }
 
 public class GetProductQueryHandler : IRequestHandler<GetProductQuery, GetProductQueryResponse>
@@ -24,7 +25,7 @@ public class GetProductQueryHandler : IRequestHandler<GetProductQuery, GetProduc
 
     public async Task<GetProductQueryResponse> Handle(GetProductQuery request, CancellationToken cancellationToken)
     {
-        var product = await _context.Products.FindAsync(request.ProductId);
+        var product = await _context.Products.FindAsync(request.ProductId.FromSqids());
 
         if (product is null)
         {
@@ -37,7 +38,7 @@ public class GetProductQueryHandler : IRequestHandler<GetProductQuery, GetProduc
 
 public class GetProductQueryResponse
 {
-    public int ProductId { get; set; }
+    public string ProductId { get; set; } = default!;
     public string Description { get; set; } = default!;
     public decimal Price { get; set; }
 }
@@ -46,6 +47,9 @@ public class GetProductQueryProfile : Profile
 {
     public GetProductQueryProfile()
     {
-        CreateMap<Product, GetProductQueryResponse>();
+        CreateMap<Product, GetProductQueryResponse>()
+            .ForMember(dest =>
+                dest.ProductId,
+                opt => opt.MapFrom(src => src.ProductId.ToSqids()));
     }
 }

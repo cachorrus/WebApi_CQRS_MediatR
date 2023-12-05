@@ -7,7 +7,7 @@ Accept: application/json
 ###
 
 #name GetProductsById
-GET {{MediatRApi_HostAddress}}/products/1
+GET {{MediatRApi_HostAddress}}/products/9ZeGz0FK
 Accept: application/json
 
 ###
