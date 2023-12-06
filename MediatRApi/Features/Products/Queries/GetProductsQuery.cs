@@ -45,7 +45,7 @@ public class GetProductsQueryProfile : Profile
         CreateMap<Product, GetProductsQueryResponse>()
             .ForMember(dest =>
                 dest.ListDescription,
-                opt => opt.MapFrom(src => $"{src.Description} - {src.Price:c}"))
+                opt => opt.MapFrom(src => $"{src.Description} - {src.Price}")) // CurrencySymbol Invariant https://github.com/dotnet/runtime/blob/main/docs/design/features/globalization-invariant-mode.md
             .ForMember(dest =>
                 dest.ProductId,
                 opt => opt.MapFrom(src => src.ProductId.ToSqids()));

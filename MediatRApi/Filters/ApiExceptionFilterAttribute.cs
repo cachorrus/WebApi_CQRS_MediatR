@@ -85,6 +85,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
 
     private void HandleUnknownException(ExceptionContext context)
     {
+        Console.WriteLine(context.Exception);
         if (!context.ModelState.IsValid)
         {
             HandleInvalidModelStateException(context);
