@@ -38,4 +38,24 @@ public class ProductsController : ControllerBase
     {
         return await _mediator.Send(query);
     }
+
+    [HttpPut("{ProductId}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductCommand command, [FromRoute] string ProductId)
+    {
+        command.ProductId = ProductId;
+
+        await _mediator.Send(command);
+
+        return Ok();
+    }
+
+    [HttpDelete("{ProductId}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> DeleteProduct([FromRoute] DeleteProductCommand command)
+    {
+        await _mediator.Send(command);
+
+        return Ok();
+    }
 }

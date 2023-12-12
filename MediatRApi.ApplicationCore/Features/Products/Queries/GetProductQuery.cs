@@ -1,5 +1,6 @@
 using AutoMapper;
 using MediatR;
+using MediatRApi.ApplicationCore.Common.Attributes;
 using MediatRApi.ApplicationCore.Common.Exceptions;
 using MediatRApi.ApplicationCore.Common.Helpers;
 using MediatRApi.ApplicationCore.Domain;

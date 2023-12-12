@@ -1,8 +1,10 @@
 using System.Reflection;
 using System.Text;
+using Audit.Core;
 using FluentValidation;
 using MediatR;
 using MediatRApi.ApplicationCore.Common.Behaviours;
+using MediatRApi.ApplicationCore.Common.Interfaces;
 using MediatRApi.ApplicationCore.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -19,14 +21,26 @@ public static class DependencyInjection
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuditLogsBehavior<,>));
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
         return services;
     }
 
-    public static IServiceCollection AddPersistence(this IServiceCollection services, string connectionString)
+    public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSqlite<MyAppDbContext>(connectionString);
+        services.AddSqlite<MyAppDbContext>(configuration.GetConnectionString("Default"));
+
+        Configuration.Setup()
+            .UseAzureStorageBlobs(config => config
+                .WithConnectionString(configuration["AuditLogs:ConnectionStrings"]!)
+                .ContainerName(ev => $"meditrapilogs{DateTime.Today:yyyyMMdd}")
+                .BlobName(ev =>
+                {
+                    var currentUser = ev.CustomFields["User"] as CurrentUser;
+
+                    return $"{ev.EventType}/{currentUser?.Id}-{DateTime.UtcNow.Ticks}.json";
+                }));
 
         return services;
     }

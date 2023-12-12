@@ -1,11 +1,13 @@
 using AutoMapper;
 using FluentValidation;
 using MediatR;
+using MediatRApi.ApplicationCore.Common.Attributes;
 using MediatRApi.ApplicationCore.Domain;
 using MediatRApi.ApplicationCore.Infrastructure.Persistence;
 
 namespace MediatRApi.ApplicationCore.Features.Products.Commands;
 
+[AuditLog]
 public class CreateProductCommand : IRequest
 {
     public string Description { get; set; } = default!;
@@ -39,7 +41,7 @@ public class CreateProductValidator : AbstractValidator<CreateProductCommand>
 {
     public CreateProductValidator()
     {
-        RuleFor(r => r.Description).NotNull();
+        RuleFor(r => r.Description).NotNull().NotEmpty();
         RuleFor(r => r.Price).NotNull().GreaterThan(0);
     }
 }

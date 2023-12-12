@@ -485,3 +485,8 @@ $RECYCLE.BIN/
 MediatRApi/MediatRApi.db
 MediatRApi/MediatRApi.db-wal
 MediatRApi/MediatRApi.db-shm
+MediatRApi.WebApi/MediatRApi.sqlite
+MediatRApi.WebApi/MediatRApi.db
+__azurite_db_blob__.json
+__azurite_db_blob_extent__.json
+__blobstorage__

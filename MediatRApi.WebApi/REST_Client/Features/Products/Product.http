@@ -1,5 +1,5 @@
 @MediatRApi_HostAddress = http://localhost:5000/api
-@accessToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiJiMjQwNDRhMy0zN2QzLTQxOTctODZlMi1iM2E2MGU5MWYxNWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidGVzdF91c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3MDIwMTU5MzQsImlzcyI6IldlYkFwaUp3dC5jb20iLCJhdWQiOiJsb2NhbGhvc3QifQ.KOBObaU84lQT6ektqTPelp-61y2W9ptAFClX0tAvEUg
+@accessToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiJiMjQwNDRhMy0zN2QzLTQxOTctODZlMi1iM2E2MGU5MWYxNWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidGVzdF91c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3MDI0NDcwNTAsImlzcyI6IldlYkFwaUp3dC5jb20iLCJhdWQiOiJsb2NhbGhvc3QifQ.ZauJnfKmEJg9IjpZriYVBH2PIhTnMvKiHzWHlHLzzcw
 #name GetProducts
 GET {{MediatRApi_HostAddress}}/products/
 Accept: application/json
@@ -20,6 +20,24 @@ Authorization: {{accessToken}}
 Content-Type: application/json
 
 {
-  "description": "Product 05",
-  "price": 50.50
+  "description": "Product 12",
+  "price": 123.99
 }
+
+###
+
+#name UpdateProduct
+PUT {{MediatRApi_HostAddress}}/products/3y6NcrdJ
+Authorization: {{accessToken}}
+Content-Type: application/json
+
+{
+  "description": "Product 06",
+  "price": 99.50
+}
+
+###
+
+#name DeleteProduct
+DELETE {{MediatRApi_HostAddress}}/products/qlBW8HPr
+Authorization: {{accessToken}}
