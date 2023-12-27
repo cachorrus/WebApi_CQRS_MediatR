@@ -6,22 +6,30 @@ namespace MediatRApi.ApplicationCore.Infrastructure.Persistence;
 
 public static class SeedData
 {
-    public static async Task SeedDataInitialize(this IServiceProvider serviceProvider)
+    /*    public static async Task SeedDataInitialize(this IServiceProvider serviceProvider)
     {
         using var scope = serviceProvider.CreateScope();
-        //var context = serviceProvider.GetRequiredService<MyAppDbContext>();
-        //var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+        var context = serviceProvider.GetRequiredService<MyAppDbContext>();
+        var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+        var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+        context.Database.EnsureCreated();
 
         Console.WriteLine("Seeding database...");
-        await SeedProducts(scope);
-        await SeedUsers(scope);
+        await SeedProducts(context);
+        await SeedUsers(userManager, roleManager);
     }
+    */
 
-    private static async Task SeedProducts(IServiceScope scope)
+    public static async Task SeedDataAsync(MyAppDbContext context)
+    {
+        Console.WriteLine("Seeding database...");
+
+        await SeedProducts(context);
+    }
+    private static async Task SeedProducts(MyAppDbContext context)
     {
         Console.WriteLine("Seeding Products...");
-
-        var context = scope.ServiceProvider.GetRequiredService<MyAppDbContext>();
 
         if (!context.Products.Any())
         {
@@ -43,11 +51,10 @@ public static class SeedData
         }
     }
 
-    private static async Task SeedUsers(IServiceScope scope)
+    public static async Task SeedUsersAsync(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
     {
         Console.WriteLine("Seeding Users...");
 
-        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
         var testUser = await userManager.FindByNameAsync("test_user");
 
         if (testUser is null)
@@ -66,7 +73,6 @@ public static class SeedData
 
         Console.WriteLine("Seeding Roles...");
 
-        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
         var adminRole = await roleManager.FindByNameAsync("Admin");
 
         if (adminRole is null)

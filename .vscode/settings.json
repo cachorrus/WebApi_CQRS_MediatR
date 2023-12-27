@@ -11,8 +11,10 @@
         "función",
         "Generamos",
         "inicializando",
+        "Passw",
         "posible",
         "Sqids",
         "Verificamos"
-    ]
+    ],
+    "dotnet-test-explorer.testProjectPath": "tests/**/**/*Tests*.@(csproj|vbproj|fsproj)"
 }

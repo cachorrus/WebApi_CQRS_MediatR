@@ -2,6 +2,7 @@
 using MediatRApi.WebApi;
 using MediatRApi.ApplicationCore;
 using MediatRApi.ApplicationCore.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,19 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-await app.Services.SeedDataInitialize();
+await SeedDataInitialize();
 
 app.Run();
+
+async Task SeedDataInitialize()
+{
+    using var scope = app.Services.CreateScope();
+    var context = scope.ServiceProvider.GetRequiredService<MyAppDbContext>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+    context.Database.EnsureCreated();
+
+    await SeedData.SeedDataAsync(context);
+    await SeedData.SeedUsersAsync(userManager, roleManager);
+}
