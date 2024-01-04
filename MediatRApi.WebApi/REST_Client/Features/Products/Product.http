@@ -1,5 +1,5 @@
 @MediatRApi_HostAddress = http://localhost:5000/api
-@accessToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiJiMjQwNDRhMy0zN2QzLTQxOTctODZlMi1iM2E2MGU5MWYxNWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidGVzdF91c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3MDM4NTM4OTUsImlzcyI6IldlYkFwaUp3dC5jb20iLCJhdWQiOiJsb2NhbGhvc3QifQ.JeiFfiLs33dOQQqvwePIzt9fRrBU_6Bf4dV56quYSyI
+@accessToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiJmMjQzZDI3Ni02YzY2LTQ1YWItYmI2NC04MTIxY2ZiMzNiMDciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidGVzdF91c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3MDQ0MzcyNTIsImlzcyI6IldlYkFwaUp3dC5jb20iLCJhdWQiOiJsb2NhbGhvc3QifQ.7JE84y6wjwMBDTisQasV45FVgvTqsuiitBeV-DThC1M
 #name GetProducts
 GET {{MediatRApi_HostAddress}}/products/
 Accept: application/json
@@ -8,7 +8,7 @@ Authorization: {{accessToken}}
 ###
 
 #name GetProductsById
-GET {{MediatRApi_HostAddress}}/products/9ZeGz0FK
+GET {{MediatRApi_HostAddress}}/products/6VD2TkG1E0Z39mot
 Accept: application/json
 Authorization: {{accessToken}}
 
@@ -20,24 +20,24 @@ Authorization: {{accessToken}}
 Content-Type: application/json
 
 {
-  "description": "Product 12",
+  "description": "Product 03",
   "price": 123.99
 }
 
 ###
 
 #name UpdateProduct
-PUT {{MediatRApi_HostAddress}}/products/3y6NcrdJ
+PUT {{MediatRApi_HostAddress}}/products/9ZeGz0FKH8uXjsUZ
 Authorization: {{accessToken}}
 Content-Type: application/json
 
 {
-  "description": "Product 06",
+  "description": "Product Update 03",
   "price": 99.50
 }
 
 ###
 
 #name DeleteProduct
-DELETE {{MediatRApi_HostAddress}}/products/rHRB8bst
+DELETE {{MediatRApi_HostAddress}}/products/0IAOfyILRJk4tUBq
 Authorization: {{accessToken}}

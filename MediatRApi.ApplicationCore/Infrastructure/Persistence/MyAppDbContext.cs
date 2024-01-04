@@ -19,6 +19,7 @@ public class MyAppDbContext : IdentityDbContext<IdentityUser>
     }
 
     public DbSet<Product> Products => Set<Product>();
+    public DbSet<AccessToken> AccessTokens => Set<AccessToken>();
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
@@ -39,5 +40,12 @@ public class MyAppDbContext : IdentityDbContext<IdentityUser>
         }
 
         return await base.SaveChangesAsync(cancellationToken);
+    }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.ApplyConfigurationsFromAssembly(typeof(MyAppDbContext).Assembly);
+
+        base.OnModelCreating(builder);
     }
 }

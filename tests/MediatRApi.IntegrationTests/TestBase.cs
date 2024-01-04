@@ -2,11 +2,14 @@ using System.Linq.Expressions;
 using System.Net.Http.Headers;
 using MediatR;
 using MediatRApi.ApplicationCore.Common.Exceptions;
+using MediatRApi.ApplicationCore.Domain;
 using MediatRApi.ApplicationCore.Features.Auth.Commands;
 using MediatRApi.ApplicationCore.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Respawn;
 
 namespace MediatRApi.IntegrationTests;
 
@@ -24,10 +27,13 @@ public class TestBase
     public async Task<(HttpClient Client, string UserId)> CreateTestUser(string userName, string password, string[] roles)
     {
         using var scope = Application.Services.CreateScope();
-        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
         var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-        var newUser = new IdentityUser(userName);
+        var newUser = new User
+        {
+            UserName = userName
+        };
 
         await userManager.CreateAsync(newUser, password);
 
@@ -198,10 +204,30 @@ public class TestBase
         using var scope = Application.Services.CreateScope();
 
         var context = scope.ServiceProvider.GetRequiredService<MyAppDbContext>();
+        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-        context.Database.EnsureDeleted();
-        context.Database.EnsureCreated();
+        if (context.Database.IsSqlite())
+        {
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
+        }
+        else if (context.Database.IsSqlServer())
+        {
+            var config = scope.ServiceProvider.GetService<IConfiguration>();
+            var connection = config?.GetConnectionString("SqlServer");
+
+            var respawner = await Respawner.CreateAsync(
+                connection!,
+                new RespawnerOptions
+            {
+                TablesToIgnore = new Respawn.Graph.Table[] { "__EFMigrationsHistory" }
+            });
+
+            await respawner.ResetAsync(connection!);
+        }
 
         await SeedData.SeedDataAsync(context);
+        await SeedData.SeedUsersAsync(userManager, roleManager);
     }
 }

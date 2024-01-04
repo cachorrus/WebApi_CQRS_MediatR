@@ -5,7 +5,7 @@ namespace MediatRApi.ApplicationCore.Common.Helpers;
 public static class AppHelpers
 {
     public const string _Alphabet = "uAna3WTY4piy8EXq5IcNHmOFV2f9thLBgrCo6xwz7kGvQJlURbPMZSD10Ksedj";
-    public const int _MinLength = 8;
+    public const int _MinLength = 16;
     private static SqidsEncoder<int> GetSqids()
     {
         return  new SqidsEncoder<int>(new()

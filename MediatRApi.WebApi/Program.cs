@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Serilog;
 using Serilog.Events;
 using Serilog.Enrichers.Sensitive;
+using MediatRApi.ApplicationCore.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,11 +23,11 @@ Log.Logger = new LoggerConfiguration()
     .Enrich.WithSensitiveDataMasking(options =>
     {
         options.MaskingOperators.Clear();
-        //Enmascara todas las propiedades del siguiente arreglo = ***MASKED***
+        //Enmascara todas las propiedades del siguiente arreglo de propiedades con el valor = ***MASKED***
         options.MaskProperties.AddRange(["Password"]);
     })
     .WriteTo.Console()
-    .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
+    //.WriteTo.File("log.log", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
 builder.Services.AddWebApi();
@@ -80,7 +81,7 @@ async Task SeedDataInitialize()
 {
     using var scope = app.Services.CreateScope();
     var context = scope.ServiceProvider.GetRequiredService<MyAppDbContext>();
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
     context.Database.EnsureCreated();
