@@ -10,7 +10,7 @@ public class GetProductsQueryTests : TestBase
     public async Task Products_Obtained_WithAuthenticatedUser()
     {
         // Arrange
-        var (Client, userId) = await GetClientAsDefaultUserAsync();
+        var (Client, userId, _) = await GetClientAsDefaultUserAsync();
 
         // Act
         var products = await Client.GetFromJsonAsync<List<GetProductsQueryResponse>>("/api/products");

@@ -13,7 +13,7 @@ public class UpdateProductCommandTests : TestBase
     {
         // Arrange
         var productDemo = await FindAsync<Product>(q => 1 == 1);
-        var (Client, userId) = await GetClientAsAdminAsync();
+        var (Client, userId, _) = await GetClientAsAdminAsync();
 
         var command = new UpdateProductCommand
         {
@@ -42,7 +42,7 @@ public class UpdateProductCommandTests : TestBase
     {
         // Arrange
         var productDemo = await FindAsync<Product>(q => 1 == 1);
-        var (Client, userId) = await GetClientAsAdminAsync();
+        var (Client, userId, _) = await GetClientAsAdminAsync();
 
         var command = new UpdateProductCommand
         {
@@ -70,7 +70,7 @@ public class UpdateProductCommandTests : TestBase
     {
         // Arrange
         var productDemo = await FindAsync<Product>(q => 1 == 1);
-        var (Client, userId) = await GetClientAsDefaultUserAsync();
+        var (Client, userId, _) = await GetClientAsDefaultUserAsync();
 
         var command = new UpdateProductCommand
         {

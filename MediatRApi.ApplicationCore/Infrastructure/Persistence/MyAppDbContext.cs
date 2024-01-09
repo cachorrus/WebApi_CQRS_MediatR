@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MediatRApi.ApplicationCore.Infrastructure.Persistence;
 
-public class MyAppDbContext : IdentityDbContext<IdentityUser>
+public class MyAppDbContext : IdentityDbContext<User>
 {
     private readonly CurrentUser _user;
 
@@ -19,7 +19,7 @@ public class MyAppDbContext : IdentityDbContext<IdentityUser>
     }
 
     public DbSet<Product> Products => Set<Product>();
-    public DbSet<AccessToken> AccessTokens => Set<AccessToken>();
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {

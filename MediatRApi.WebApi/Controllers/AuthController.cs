@@ -33,4 +33,10 @@ public class AuthController : ControllerBase
             IsAdmin = currentUser.IsInRole("Admin")
         });
     }
+
+    [HttpPost("refresh")]
+    public async Task<RefreshTokenCommandResponse> Refresh([FromBody] RefreshTokenCommand command)
+    {
+        return await _mediator.Send(command);
+    }
 }

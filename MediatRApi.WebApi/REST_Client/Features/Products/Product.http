@@ -1,5 +1,5 @@
 @MediatRApi_HostAddress = http://localhost:5000/api
-@accessToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiJmMjQzZDI3Ni02YzY2LTQ1YWItYmI2NC04MTIxY2ZiMzNiMDciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidGVzdF91c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3MDQ0MzcyNTIsImlzcyI6IldlYkFwaUp3dC5jb20iLCJhdWQiOiJsb2NhbGhvc3QifQ.7JE84y6wjwMBDTisQasV45FVgvTqsuiitBeV-DThC1M
+@accessToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiI1N2JkNTg4ZS0xNTQwLTQ0ODUtYjFiYi03NzE0YTZjNTViMDkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidGVzdF91c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3MDQ2MjcyNTMsImlzcyI6IldlYkFwaUp3dC5jb20iLCJhdWQiOiJsb2NhbGhvc3QifQ.Hb2O49MypFTZ-7Y5N0en_DHdjm6BIFooEb6g2hd6_ds
 #name GetProducts
 GET {{MediatRApi_HostAddress}}/products/
 Accept: application/json
@@ -8,7 +8,7 @@ Authorization: {{accessToken}}
 ###
 
 #name GetProductsById
-GET {{MediatRApi_HostAddress}}/products/6VD2TkG1E0Z39mot
+GET {{MediatRApi_HostAddress}}/products/yCNe2tMHAEONSbhm
 Accept: application/json
 Authorization: {{accessToken}}
 
@@ -27,7 +27,7 @@ Content-Type: application/json
 ###
 
 #name UpdateProduct
-PUT {{MediatRApi_HostAddress}}/products/9ZeGz0FKH8uXjsUZ
+PUT {{MediatRApi_HostAddress}}/products/0IAOfyILRJk4tUBq
 Authorization: {{accessToken}}
 Content-Type: application/json
 

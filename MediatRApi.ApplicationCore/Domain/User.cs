@@ -4,6 +4,6 @@ namespace MediatRApi.ApplicationCore.Domain;
 
 public class User : IdentityUser
 {
-    public ICollection<AccessToken> AccessTokens { get; set; } 
-        = new HashSet<AccessToken>();
+    public ICollection<RefreshToken> RefreshTokens { get; set; }
+        = new HashSet<RefreshToken>();
 }

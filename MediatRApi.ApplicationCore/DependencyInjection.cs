@@ -5,6 +5,7 @@ using FluentValidation;
 using MediatR;
 using MediatRApi.ApplicationCore.Common.Behaviours;
 using MediatRApi.ApplicationCore.Common.Interfaces;
+using MediatRApi.ApplicationCore.Common.Services;
 using MediatRApi.ApplicationCore.Domain;
 using MediatRApi.ApplicationCore.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -25,20 +26,24 @@ public static class DependencyInjection
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuditLogsBehavior<,>));
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
+        services.AddScoped<AuthService>();
 
         return services;
     }
 
     public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
-        if (configuration.GetValue<bool>("UseSqlite"))
+        services.AddDbContext<MyAppDbContext>(options =>
         {
-            services.AddSqlite<MyAppDbContext>(configuration.GetConnectionString("Sqlite"));
-        } else
-        {
-            services.AddDbContext<MyAppDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("SqlServer")));
-        }
+            if (configuration.GetValue<bool>("UseInMemory"))
+            {
+                options.UseInMemoryDatabase(nameof(MyAppDbContext));
+            }
+            else
+            {
+                options.UseSqlServer(configuration.GetConnectionString("Default"));
+            }
+        });
 
         Configuration.Setup()
             .UseAzureStorageBlobs(config => config

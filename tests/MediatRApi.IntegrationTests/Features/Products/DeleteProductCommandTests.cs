@@ -11,7 +11,7 @@ public class DeleteProductCommandTests : TestBase
     {
         // Arrange
         var productDemo = await FindAsync<Product>(q => 1 == 1);
-        var (Client, userId) = await GetClientAsAdminAsync();
+        var (Client, userId, _) = await GetClientAsAdminAsync();
 
         // Act
         var result = await Client.DeleteAsync($"/api/products/{productDemo!.ProductId.ToSqids()}");
@@ -29,7 +29,7 @@ public class DeleteProductCommandTests : TestBase
     {
         // Arrange
         var productDemo = await FindAsync<Product>(q => 1 == 1);
-        var (Client, userId) = await GetClientAsDefaultUserAsync();
+        var (Client, userId, _) = await GetClientAsDefaultUserAsync();
 
         // Act
         var result = await Client.DeleteAsync($"/api/products/{productDemo!.ProductId.ToSqids()}");
@@ -46,7 +46,7 @@ public class DeleteProductCommandTests : TestBase
     public async Task Product_ProduceNotFoundException_WhenInvalidFieldsAreProvided_AndUserIsAdmin()
     {
         // Arrange
-        var (Client, userId) = await GetClientAsAdminAsync();
+        var (Client, userId, _) = await GetClientAsAdminAsync();
 
         // Act
         var result = await Client.DeleteAsync($"/api/products/{0.ToSqids()}");

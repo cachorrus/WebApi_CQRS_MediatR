@@ -12,7 +12,7 @@ public class CreateProductCommandTests : TestBase
     public async Task Product_IsCreated_WhenValidFieldsAreProvided_AndUserIsAdmin()
     {
         // Arrange
-        var (Client, userId) = await GetClientAsAdminAsync();
+        var (Client, userId, _) = await GetClientAsAdminAsync();
 
         // Act
         var command = new CreateProductCommand
@@ -39,7 +39,7 @@ public class CreateProductCommandTests : TestBase
     public async Task Product_IsNotCreated_WhenInvalidFieldsAreProvided_AndUserIsAdmin()
     {
         // Arrange
-        var (Client, userId) = await GetClientAsAdminAsync();
+        var (Client, userId, _) = await GetClientAsAdminAsync();
 
         // Act
         var command = new CreateProductCommand
@@ -61,7 +61,7 @@ public class CreateProductCommandTests : TestBase
     public async Task Product_IsNotCreated_WhenValidFieldsAreProvided_AndDefaultUser()
     {
         // Arrange
-        var (Client, userId) = await GetClientAsDefaultUserAsync();
+        var (Client, userId, _) = await GetClientAsDefaultUserAsync();
 
         var command = new CreateProductCommand
         {

@@ -86,6 +86,9 @@ async Task SeedDataInitialize()
 
     context.Database.EnsureCreated();
 
-    await SeedData.SeedDataAsync(context);
-    await SeedData.SeedUsersAsync(userManager, roleManager);
+    if (app.Environment.IsDevelopment())
+    {
+        await SeedData.SeedDataAsync(context);
+        await SeedData.SeedUsersAsync(userManager, roleManager);
+    }
 }

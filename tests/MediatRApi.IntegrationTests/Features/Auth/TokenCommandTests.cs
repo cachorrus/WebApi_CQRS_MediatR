@@ -6,7 +6,7 @@ using MediatRApi.ApplicationCore.Features.Auth.Commands;
 
 namespace MediatRApi.IntegrationTests.Features.Auth;
 
-public class RequestTokenCommandTests : TestBase
+public class TokenCommandTests : TestBase
 {
     [Test]
     public async Task User_CanLogin()
