@@ -1,0 +1,11 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+        "ConnectionStrings:Default": "Server=localhost,1433;Database=MediatRApi;User Id=sa;Password=!Passw0rd;TrustServerCertificate=true;MultipleActiveResultSets=false",
+        "UseInMemory": false,
+        "AuditLogs:Enabled": true,
+        "AuditLogs:ConnectionString": "UseDevelopmentStorage=true"
+    }
+}

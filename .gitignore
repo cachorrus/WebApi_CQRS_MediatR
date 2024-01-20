@@ -489,5 +489,8 @@ MediatRApi.WebApi/MediatRApi.sqlite
 MediatRApi.WebApi/MediatRApi.db
 __azurite_db_blob__.json
 __azurite_db_blob_extent__.json
+__azurite_db_queue__.json
+__azurite_db_queue_extent__.json
 __blobstorage__
+__queuestorage__
 MediatRApi.WebApi/log*.txt

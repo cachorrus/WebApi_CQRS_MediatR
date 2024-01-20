@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "MediatRFunction_CheckoutProcessor": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7061",
+      "launchBrowser": false
+    }
+  }
+}

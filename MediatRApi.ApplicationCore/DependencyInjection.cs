@@ -8,6 +8,7 @@ using MediatRApi.ApplicationCore.Common.Interfaces;
 using MediatRApi.ApplicationCore.Common.Services;
 using MediatRApi.ApplicationCore.Domain;
 using MediatRApi.ApplicationCore.Infrastructure.Persistence;
+using MediatRApi.ApplicationCore.Infrastructure.Services.AzureQueues;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -47,7 +48,7 @@ public static class DependencyInjection
 
         Configuration.Setup()
             .UseAzureStorageBlobs(config => config
-                .WithConnectionString(configuration["AuditLogs:ConnectionStrings"]!)
+                .WithConnectionString(configuration["AuditLogs:ConnectionString"])
                 .ContainerName(ev => $"meditrapilogs{DateTime.Today:yyyyMMdd}")
                 .BlobName(ev =>
                 {
@@ -84,6 +85,13 @@ public static class DependencyInjection
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]!))
                 };
             });
+
+        return services;
+    }
+
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+    {
+        services.AddScoped<IQueuesService, AzureStorageQueueService>();
 
         return services;
     }

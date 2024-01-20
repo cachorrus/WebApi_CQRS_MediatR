@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{47654186
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatRApi.IntegrationTests", "tests\MediatRApi.IntegrationTests\MediatRApi.IntegrationTests.csproj", "{D85099DA-6A8B-4E19-BF10-D34B8092C226}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatRFunction_CheckoutProcessor", "MediatRFunction.CheckoutProcessor\MediatRFunction_CheckoutProcessor.csproj", "{19D387F7-B389-4689-AA5D-7BD7119DB54D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{D85099DA-6A8B-4E19-BF10-D34B8092C226}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D85099DA-6A8B-4E19-BF10-D34B8092C226}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D85099DA-6A8B-4E19-BF10-D34B8092C226}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19D387F7-B389-4689-AA5D-7BD7119DB54D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19D387F7-B389-4689-AA5D-7BD7119DB54D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19D387F7-B389-4689-AA5D-7BD7119DB54D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19D387F7-B389-4689-AA5D-7BD7119DB54D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D85099DA-6A8B-4E19-BF10-D34B8092C226} = {47654186-49A4-4132-B0C8-0D5E7C529814}

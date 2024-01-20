@@ -19,5 +19,10 @@
         "Sqids",
         "Verificamos"
     ],
-    "dotnet-test-explorer.testProjectPath": "tests/**/**/*Tests*.@(csproj|vbproj|fsproj)"
+    "dotnet-test-explorer.testProjectPath": "tests/**/**/*Tests*.@(csproj|vbproj|fsproj)",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.deploySubpath": "MediatRFunction.CheckoutProcessor/bin/Release/net8.0/publish",
+    "azureFunctions.projectLanguage": "C#",
+    "azureFunctions.projectRuntime": "~4",
+    "azureFunctions.preDeployTask": "publish (functions)"
 }

@@ -34,6 +34,7 @@ builder.Services.AddWebApi();
 builder.Services.AddApplicationCore();
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddSecurity(builder.Configuration);
+builder.Services.AddInfrastructure();
 
 var app = builder.Build();
 
