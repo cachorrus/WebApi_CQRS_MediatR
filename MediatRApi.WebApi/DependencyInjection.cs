@@ -1,9 +1,9 @@
-using FluentValidation.AspNetCore;
 using MediatRApi.ApplicationCore.Common.Interfaces;
 using MediatRApi.WebApi.Filters;
 using MediatRApi.WebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
+using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 
 namespace MediatRApi.WebApi;
 

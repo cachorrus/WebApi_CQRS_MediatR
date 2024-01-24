@@ -1,6 +1,7 @@
 using AutoMapper;
 using FluentValidation;
 using MediatR;
+using MediatRApi.ApplicationCore.Common.Attributes;
 using MediatRApi.ApplicationCore.Common.Exceptions;
 using MediatRApi.ApplicationCore.Common.Helpers;
 using MediatRApi.ApplicationCore.Domain;
@@ -8,6 +9,7 @@ using MediatRApi.ApplicationCore.Infrastructure.Persistence;
 
 namespace MediatRApi.ApplicationCore.Features.Products.Commands;
 
+[AuditLog]
 public class UpdateProductCommand : IRequest
 {
     public string ProductId { get; set; } = default!;

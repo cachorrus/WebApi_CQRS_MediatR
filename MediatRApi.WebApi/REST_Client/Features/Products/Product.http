@@ -1,5 +1,5 @@
 @MediatRApi_HostAddress = http://localhost:5000/api
-@accessToken = Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiI2MWEyNzFkZC00ZmIzLTRmMmItYjY3My1iZTZmZTgwZDExOTUiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidGVzdF91c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3MDU3MjEzMjEsImlzcyI6IldlYkFwaUp3dC5jb20iLCJhdWQiOiJsb2NhbGhvc3QifQ.mMK8ts6_AJh6Y1ydNJzqKRk7hGuEVplauM8n1Zo9XD4
+@accessToken = Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiI2MWEyNzFkZC00ZmIzLTRmMmItYjY3My1iZTZmZTgwZDExOTUiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidGVzdF91c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3MDYxMjc1MjksImlzcyI6IldlYkFwaUp3dC5jb20iLCJhdWQiOiJsb2NhbGhvc3QifQ.tqpqPwI0ND_dEGkTJQBSNsvdSQknoemmfQ2b7dotu8E
 #name GetProducts
 GET {{MediatRApi_HostAddress}}/products/
 Accept: application/json
@@ -32,8 +32,9 @@ Authorization: {{accessToken}}
 Content-Type: application/json
 
 {
-  "description": "Product Update 03",
-  "price": 99.50
+  "ProductId": "0IAOfyILRJk4tUBq",
+  "description": "Product Update 03!",
+  "price": 89.21
 }
 
 ###
