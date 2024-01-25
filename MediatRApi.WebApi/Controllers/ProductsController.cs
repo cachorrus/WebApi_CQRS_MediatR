@@ -19,9 +19,9 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<List<GetProductsQueryResponse>> GetProducts()
+    public async Task<List<GetProductsQueryResponse>> GetProducts([FromQuery] GetProductsQuery query)
     {
-        return await _mediator.Send(new GetProductsQuery());
+        return await _mediator.Send(query);
     }
 
     [HttpPost]

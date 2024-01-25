@@ -1,6 +1,7 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
+using MediatRApi.ApplicationCore.Common.Extensions;
 using MediatRApi.ApplicationCore.Common.Helpers;
 using MediatRApi.ApplicationCore.Domain;
 using MediatRApi.ApplicationCore.Infrastructure.Persistence;
@@ -10,6 +11,8 @@ namespace MediatRApi.ApplicationCore.Features.Products.Queries;
 
 public class GetProductsQuery : IRequest<List<GetProductsQueryResponse>>
 {
+    public string? SortDir { get; set; }
+    public string? SortProperty { get; set; }
 }
 
 public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, List<GetProductsQueryResponse>>
@@ -26,6 +29,7 @@ public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, List<Ge
     public Task<List<GetProductsQueryResponse>> Handle(GetProductsQuery request, CancellationToken cancellationToken) =>
         _context.Products
             .AsNoTracking()
+            .OrderBy($"{request.SortProperty} {request.SortDir}")
             .ProjectTo<GetProductsQueryResponse>(_mapper.ConfigurationProvider)
             .ToListAsync();
 }
