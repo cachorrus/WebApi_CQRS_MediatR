@@ -1,10 +1,31 @@
 using System.Linq.Expressions;
+using MediatRApi.ApplicationCore.Common.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MediatRApi.ApplicationCore.Common.Extensions;
 
 public static class EFCoreExtensions
 {
-    public static IQueryable<TEntity> OrderBy<TEntity>(this IQueryable<TEntity> source, string orderByStrValues)
+    public static async Task<PagedResult<TEntity>> GetPagedResultAsync<TEntity>(this IQueryable<TEntity> source, int pageSize, int currentPage)
+        where TEntity : class
+    {
+        var rows = await source.CountAsync();
+        var items = await source
+            .Skip((currentPage - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return new PagedResult<TEntity>
+        {
+            Results = items,
+            RowsCount = rows,
+            PageCount = (int)Math.Ceiling((double)rows / pageSize),
+            PageSize = pageSize,
+            CurrentPage = currentPage
+        };
+    }
+
+    public static IQueryable<TEntity> OrderBy<TEntity>(this IQueryable<TEntity> source, string orderByStrValues, string defaultOrderBy)
         where TEntity : class
     {
         var qryExpression = source.Expression;
@@ -18,7 +39,10 @@ public static class EFCoreExtensions
 
         if (property is null)
         {
-            return source;
+            //return source;
+            Console.WriteLine($"defaultOrderBy: {defaultOrderBy}");
+            //return source.OrderBy(x => x.GetType().GetProperty(defaultOrderBy)!.GetValue(x, null));
+            property = type.GetProperty(defaultOrderBy)!;
         }
 
         //p

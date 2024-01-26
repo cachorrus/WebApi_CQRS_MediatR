@@ -33,19 +33,17 @@ public static class SeedData
 
         if (!context.Products.Any())
         {
-            context.Products.AddRange(new List<Product>
-            {
-                new Product
-                {
-                    Description = "Product 01",
-                    Price = 16000
-                },
-                new Product
-                {
-                    Description = "Product 02",
-                    Price = 52200
-                }
-            });
+            var random = new Random();
+
+            var products =
+                Enumerable.Range(1, 100)
+                    .Select(index => new Product
+                    {
+                        Description = $"Product {index}",
+                        Price = random.NextInt64(100, 1000)
+                    });
+
+            await context.Products.AddRangeAsync(products);
 
             await context.SaveChangesAsync();
         }
